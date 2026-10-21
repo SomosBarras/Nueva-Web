@@ -49,8 +49,14 @@
         />
       </a>
       <nav class="header-nav" aria-label="Navegación principal">
-        <a class="nav-link" href="#servicios">Nuestros servicios</a>
-        <a class="nav-link" href="#operativa">Operativa</a>
+        <a class="nav-link" data-section="servicios" href="#servicios"
+          >Nuestros servicios</a
+        >
+        <a class="nav-link" data-section="operativa" href="#operativa"
+          >Operativa</a
+        ><a class="nav-link" data-section="clientes" href="#clientes"
+          >Clientes</a
+        >
         <a class="staff-link" href="https://somosbarras.com/empleo"
           >Únete al staff <svg><use href="#arrow" /></svg
         ></a>
@@ -66,33 +72,51 @@
       >
         <span></span><span></span>
       </button>
+      <nav class="mobile-nav" aria-label="Secciones de la web">
+        <a data-section="servicios" href="#servicios">Servicios</a
+        ><a data-section="operativa" href="#operativa">Operativa</a
+        ><a data-section="clientes" href="#clientes">Clientes</a
+        ><a data-section="contacto" href="#contacto">Contacto</a>
+      </nav>
       <div class="header-progress" aria-hidden="true"></div>
     </header>
 
     <main id="contenido">
       <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero-grid" aria-hidden="true"></div>
+        <a
+          class="hero-photo-panel editorial-media"
+          href="#operativa"
+          aria-label="Descubrir nuestra operativa"
+        >
+          <img
+            class="hero-photo"
+            src="/assets/photos/ENF3556.webp"
+            data-original-src="https://somosbarras.com/wp-content/uploads/2026/08/ENF3556.jpg"
+            alt=""
+            width="2048"
+            height="1365"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span class="photo-edge edge-top" aria-hidden="true"></span
+          ><span class="photo-edge edge-bottom" aria-hidden="true"></span>
+          <span class="hero-photo-caption"
+            ><span>Operativa</span
+            ><svg aria-hidden="true"><use href="#arrow" /></svg
+            ><span>La barra</span></span
+          >
+        </a>
         <div class="hero-topline">
-          <span class="eyebrow"
+          <span class="hero-sector">Conciertos / Festivales</span
+          ><span class="eyebrow"
             ><i></i> Gestión de Hostelería en Festivales</span
           ><span class="hero-coordinates" aria-hidden="true"
-            >SB® &nbsp; — &nbsp; 01 / 05</span
+            >SB® — CONTROL TOTAL</span
           >
         </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="art-orbit orbit-one"></div>
-          <div class="art-orbit orbit-two"></div>
-          <div class="art-orbit orbit-three"></div>
-          <div class="art-core">
-            <span></span><span></span><span></span><span></span><span></span
-            ><span></span><span></span><span></span><span></span><span></span
-            ><span></span><span></span>
-          </div>
-          <span class="art-cross cross-one">+</span
-          ><span class="art-cross cross-two">+</span>
-        </div>
         <h1 class="hero-title" id="hero-title">
-          <span class="title-mask"><span>Control Total.</span></span
+          <span class="title-mask"
+            ><span>Control<br />Total.</span></span
           ><span class="title-mask"><span class="pink">Error Cero.</span></span>
         </h1>
         <div class="hero-bottom">
@@ -100,27 +124,31 @@
             Transformamos barras de eventos masivos en sistemas de alta
             rentabilidad.
           </p>
-          <a
-            class="round-link magnetic"
-            href="https://wa.me/34661667318"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span>Hablemos</span
-            ><span class="button-icon"
-              ><svg><use href="#arrow" /></svg></span
-          ></a>
-          <a
+          <div class="hero-actions">
+            <a
+              class="round-link magnetic"
+              href="https://wa.me/34661667318"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span>Hablemos</span
+              ><span class="button-icon"
+                ><svg><use href="#arrow" /></svg></span></a
+            ><a class="hero-services-link" href="#servicios"
+              >Nuestros servicios <span aria-hidden="true">↓</span></a
+            >
+          </div>
+        </div>
+        <div class="hero-footnote">
+          <span aria-hidden="true"
+            >DISEÑO TÉCNICO · CONTROL DE STOCK · RENTABILIDAD</span
+          ><a
             class="scroll-cue"
             href="#nosotros"
             aria-label="Descubrir Somos Barras"
-            ><span class="scroll-line"></span
-            ><span aria-hidden="true">SCROLL PARA EXPLORAR</span
+            ><span class="scroll-line" aria-hidden="true"></span
+            ><span>SCROLL PARA EXPLORAR</span
             ><span aria-hidden="true">↓</span></a
           >
-        </div>
-        <div class="hero-footnote" aria-hidden="true">
-          <span>DISEÑO TÉCNICO · CONTROL DE STOCK · RENTABILIDAD</span
-          ><span>↓</span>
         </div>
       </section>
 
@@ -177,6 +205,20 @@
               <span></span><span></span><span></span><span></span><span></span>
             </div>
           </div>
+          <figure class="about-field editorial-media">
+            <img
+              src="/assets/photos/ENF3366.webp"
+              data-original-src="https://somosbarras.com/wp-content/uploads/2026/08/ENF3366.jpg"
+              alt=""
+              width="1365"
+              height="2048"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              Dirección Técnica <span aria-hidden="true">↗</span>
+            </figcaption>
+          </figure>
           <div class="about-copy">
             <p class="lead">
               En un evento de 20.000 personas, cada segundo cuenta. Somos Barras
@@ -191,50 +233,11 @@
         </div>
       </section>
 
-      <section class="clients" id="clientes" aria-labelledby="clients-title">
-        <div class="section-kicker">
-          <span>02 — Clientes</span><span aria-hidden="true">(25)</span>
-        </div>
-        <div class="clients-heading">
-          <h2 id="clients-title">Clientes<span>.</span></h2>
-          <svg class="clients-star rotating-star" aria-hidden="true">
-            <use href="#star" />
-          </svg>
-        </div>
-        <ul class="client-list">
-          <li class="featured">Warm Up</li>
-          <li class="featured">Low Festival</li>
-          <li class="featured">Spring Festival</li>
-          <li class="featured">Vibra Mahou</li>
-          <li>Nostalgia Millenial</li>
-          <li>Love the 90´s</li>
-          <li>Oasis</li>
-          <li>Hombres G</li>
-          <li>Melendi</li>
-          <li>Maná</li>
-          <li>Andy y Lucas</li>
-          <li>Robe</li>
-          <li>Leiva</li>
-          <li>Bryan Adams</li>
-          <li>Maka</li>
-          <li>Beret</li>
-          <li>Amaral</li>
-          <li>Cruz Cafuné</li>
-          <li>Mikel Izal</li>
-          <li>Arde Bogotá</li>
-          <li>Loquillo</li>
-          <li>Rels B</li>
-          <li>Ojete Calor</li>
-          <li>Viva Suecia</li>
-          <li>Guitarricadelafuente</li>
-        </ul>
-      </section>
-
       <section class="services" id="servicios" aria-labelledby="services-title">
         <div class="services-stage">
           <div class="services-heading">
             <div>
-              <span class="eyebrow">03 — Nuestros servicios</span>
+              <span class="eyebrow">02 — Nuestros servicios</span>
               <h2 id="services-title">
                 Nuestros servicios<span class="pink">.</span>
               </h2>
@@ -244,8 +247,36 @@
               ><svg><use href="#arrow" /></svg>
             </div>
           </div>
+          <nav class="service-pips" aria-label="Explorar servicios">
+            <button
+              type="button"
+              data-service="0"
+              aria-label="Ir a Diseño de Espacios"
+              aria-current="step"
+            >
+              <span>01</span> Diseño de Espacios</button
+            ><button
+              type="button"
+              data-service="1"
+              aria-label="Ir a Dirección Técnica"
+            >
+              <span>02</span> Dirección Técnica</button
+            ><button
+              type="button"
+              data-service="2"
+              aria-label="Ir a Auditoría de Stock"
+            >
+              <span>03</span> Auditoría de Stock</button
+            ><button
+              type="button"
+              data-service="3"
+              aria-label="Ir a Consultoría 360"
+            >
+              <span>04</span> Consultoría 360
+            </button>
+          </nav>
           <div class="services-track">
-            <article class="service-card service-pink">
+            <article class="service-card service-pink" data-index="01">
               <div class="service-top">
                 <span class="service-index">01</span
                 ><span class="service-cross" aria-hidden="true">+</span>
@@ -260,7 +291,7 @@
                 <use href="/assets/service-diagrams.svg#space" /></svg
               ><span class="diagram-caption" aria-hidden="true">SB — 01</span>
             </article>
-            <article class="service-card service-white">
+            <article class="service-card service-white" data-index="02">
               <div class="service-top">
                 <span class="service-index">02</span
                 ><span class="service-cross" aria-hidden="true">+</span>
@@ -273,7 +304,7 @@
                 <use href="/assets/service-diagrams.svg#direction" /></svg
               ><span class="diagram-caption" aria-hidden="true">SB — 02</span>
             </article>
-            <article class="service-card service-dark">
+            <article class="service-card service-dark" data-index="03">
               <div class="service-top">
                 <span class="service-index">03</span
                 ><span class="service-cross" aria-hidden="true">+</span>
@@ -286,7 +317,7 @@
                 <use href="/assets/service-diagrams.svg#stock" /></svg
               ><span class="diagram-caption" aria-hidden="true">SB — 03</span>
             </article>
-            <article class="service-card service-pink">
+            <article class="service-card service-pink" data-index="04">
               <div class="service-top">
                 <span class="service-index">04</span
                 ><span class="service-cross" aria-hidden="true">+</span>
@@ -310,7 +341,7 @@
         aria-labelledby="operations-title"
       >
         <div class="section-kicker">
-          <span>04 — Operativa</span><span aria-hidden="true">↓</span>
+          <span>03 — Operativa</span><span aria-hidden="true">↓</span>
         </div>
         <h2 id="operations-title" class="operations-title">
           Operativa<span class="pink">.</span>
@@ -431,6 +462,45 @@
         </div>
       </section>
 
+      <section class="clients" id="clientes" aria-labelledby="clients-title">
+        <div class="section-kicker">
+          <span>04 — Clientes</span><span aria-hidden="true">(25)</span>
+        </div>
+        <div class="clients-heading">
+          <h2 id="clients-title">Clientes<span>.</span></h2>
+          <svg class="clients-star rotating-star" aria-hidden="true">
+            <use href="#star" />
+          </svg>
+        </div>
+        <ul class="client-list">
+          <li class="featured">Warm Up</li>
+          <li class="featured">Low Festival</li>
+          <li class="featured">Spring Festival</li>
+          <li class="featured">Vibra Mahou</li>
+          <li>Nostalgia Millenial</li>
+          <li>Love the 90´s</li>
+          <li>Oasis</li>
+          <li>Hombres G</li>
+          <li>Melendi</li>
+          <li>Maná</li>
+          <li>Andy y Lucas</li>
+          <li>Robe</li>
+          <li>Leiva</li>
+          <li>Bryan Adams</li>
+          <li>Maka</li>
+          <li>Beret</li>
+          <li>Amaral</li>
+          <li>Cruz Cafuné</li>
+          <li>Mikel Izal</li>
+          <li>Arde Bogotá</li>
+          <li>Loquillo</li>
+          <li>Rels B</li>
+          <li>Ojete Calor</li>
+          <li>Viva Suecia</li>
+          <li>Guitarricadelafuente</li>
+        </ul>
+      </section>
+
       <section class="contact" id="contacto" aria-labelledby="contact-title">
         <div class="section-kicker">
           <span>05 — Contacto</span
@@ -457,6 +527,7 @@
     </main>
 
     <footer class="site-footer">
+      <div class="footer-watermark" aria-hidden="true">SOMOS BARRAS</div>
       <div class="footer-top">
         <a
           href="#inicio"

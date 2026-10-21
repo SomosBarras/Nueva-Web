@@ -1,0 +1,238 @@
+.gallery-expand {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+.gallery-expand svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+.gallery-expand:hover {
+  background: #ff3890;
+  border-color: #ff3890;
+  color: #000;
+  transform: scale(1.06);
+}
+.gallery-expand:disabled {
+  display: none;
+}
+.gallery-expand:focus-visible,
+.lightbox button:focus-visible {
+  outline: 3px solid #ff3890;
+  outline-offset: 5px;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: clamp(18px, 3vw, 42px);
+  overflow: hidden;
+  border: 0;
+  background: rgba(0, 0, 0, 0.97);
+  color: #fff;
+  overscroll-behavior: contain;
+}
+.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.9);
+}
+.lightbox[open] {
+  animation: lightbox-enter 180ms ease-out;
+}
+.lightbox:not([open]) {
+  display: none;
+}
+.lightbox-shell {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 20px;
+  width: 100%;
+  height: 100%;
+}
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+.lightbox-eyebrow {
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.lightbox-close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+}
+.lightbox-close svg,
+.lightbox-navigation svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.4;
+}
+.lightbox-close:hover {
+  border-color: #ff3890;
+  background: #ff3890;
+  color: #000;
+}
+.lightbox-figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+}
+.lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.lightbox-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.lightbox-caption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 11px;
+  font-weight: 550;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+#sb-lightbox-count {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: monospace;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+.lightbox-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.lightbox-navigation button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.lightbox-navigation button:hover {
+  color: #ff3890;
+}
+.lightbox-navigation button:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
+.lightbox-keyboard-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+@keyframes lightbox-enter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 600px) {
+  .gallery-expand {
+    right: 13px;
+    bottom: 13px;
+    width: 44px;
+    height: 44px;
+  }
+  .lightbox {
+    padding: max(16px, env(safe-area-inset-top)) 16px
+      max(16px, env(safe-area-inset-bottom));
+  }
+  .lightbox-shell {
+    gap: 13px;
+  }
+  .lightbox-figure {
+    gap: 15px;
+  }
+  .lightbox-caption {
+    font-size: 9px;
+    gap: 10px;
+  }
+  .lightbox-navigation {
+    padding-top: 12px;
+  }
+  .lightbox-keyboard-hint {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lightbox[open] {
+    animation: none;
+  }
+  .gallery-expand,
+  .lightbox button {
+    transition: none;
+  }
+}
+.motion-paused .lightbox[open] {
+  animation: none;
+}
+.motion-paused .gallery-expand,
+.motion-paused .lightbox button {
+  transition: none;
+}

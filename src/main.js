@@ -2,6 +2,7 @@ import "./style.css";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
+import { initGallery } from "./gallery.js";
 
 gsap.registerPlugin(ScrollTrigger);
 document.documentElement.classList.add("js-ready");
@@ -12,6 +13,8 @@ const services = document.querySelector(".services");
 const track = document.querySelector(".services-track");
 const serviceCurrent = document.querySelector("#service-current");
 const serviceProgress = document.querySelector(".services-progress > span");
+const serviceButtons = [...document.querySelectorAll("[data-service]")];
+const serviceCards = [...document.querySelectorAll(".service-card")];
 let context;
 let media;
 let lenis;
@@ -25,6 +28,25 @@ try {
 }
 let paused = reduceMotion.matches || storedPause;
 
+const lead = document.querySelector(".about-copy .lead");
+const words = lead.textContent.trim().split(/\s+/);
+lead.replaceChildren(
+  ...words.flatMap((word, index) => {
+    const span = document.createElement("span");
+    span.className = "copy-word";
+    span.textContent = word;
+    return index ? [document.createTextNode(" "), span] : [span];
+  }),
+);
+
+function setService(index) {
+  serviceCurrent.textContent = String(index + 1).padStart(2, "0");
+  serviceButtons.forEach((button, item) => {
+    if (index === item) button.setAttribute("aria-current", "step");
+    else button.removeAttribute("aria-current");
+  });
+}
+
 function clearMotion() {
   media?.revert();
   context?.revert();
@@ -33,7 +55,7 @@ function clearMotion() {
   lenis = undefined;
   services.classList.remove("scroll-services");
   serviceProgress.style.transform = "";
-  serviceCurrent.textContent = "01";
+  setService(0);
 }
 
 function setupMotion() {
@@ -54,7 +76,7 @@ function setupMotion() {
     duration: 1.05,
     smoothWheel: true,
     syncTouch: false,
-    anchors: { offset: -90 },
+    anchors: { offset: 0 },
   });
   lenis.on("scroll", ScrollTrigger.update);
   tickerCallback = (time) => lenis?.raf(time * 1000);
@@ -66,6 +88,11 @@ function setupMotion() {
         .timeline({ defaults: { ease: "power3.out" } })
         .from(".hero-topline", { y: 15, autoAlpha: 0, duration: 0.8 }, 0.15)
         .from(
+          ".hero-photo-panel",
+          { clipPath: "inset(100% 0 0 0)", duration: 1.25, ease: "power4.out" },
+          0.05,
+        )
+        .from(
           ".hero-title .title-mask > span",
           { yPercent: 115, rotate: 3, duration: 1.15, stagger: 0.12 },
           0.18,
@@ -76,8 +103,8 @@ function setupMotion() {
     hasEntered = true;
 
     gsap.to(".hero-title", {
-      yPercent: 22,
-      opacity: 0.12,
+      yPercent: -10,
+      opacity: 0.05,
       ease: "none",
       scrollTrigger: {
         trigger: ".hero",
@@ -86,15 +113,27 @@ function setupMotion() {
         scrub: true,
       },
     });
-    gsap.to(".hero-art", {
-      rotation: 35,
-      yPercent: 20,
+    gsap.to(".hero-photo-panel", {
+      left: () => (window.innerWidth > 900 ? "6%" : "0%"),
+      right: () => (window.innerWidth > 900 ? "4%" : "0%"),
       ease: "none",
       scrollTrigger: {
         trigger: ".hero",
         start: "top top",
         end: "bottom top",
         scrub: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+    gsap.to(".hero-photo", {
+      scale: 1.1,
+      yPercent: 5,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
       },
     });
 
@@ -107,13 +146,26 @@ function setupMotion() {
         scrollTrigger: { trigger: heading, start: "top 88%", once: true },
       });
     });
-    gsap.from(".about-copy p", {
-      y: 35,
-      autoAlpha: 0,
-      duration: 0.9,
-      stagger: 0.15,
-      ease: "power2.out",
-      scrollTrigger: { trigger: ".about-copy", start: "top 90%", once: true },
+    gsap.from(".copy-word", {
+      opacity: 0.18,
+      stagger: 0.08,
+      ease: "none",
+      scrollTrigger: {
+        trigger: lead,
+        start: "top 88%",
+        end: "bottom 55%",
+        scrub: true,
+      },
+    });
+    gsap.from(".about-field", {
+      clipPath: "inset(16% 0 16% 0)",
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".about-field",
+        start: "top 90%",
+        end: "top 45%",
+        scrub: 0.6,
+      },
     });
     gsap.from("[data-count]", {
       textContent: 0,
@@ -130,7 +182,7 @@ function setupMotion() {
       scrollTrigger: { trigger: ".experience", start: "top 85%", once: true },
     });
     gsap.from(".client-list li", {
-      y: 25,
+      y: 18,
       autoAlpha: 0,
       duration: 0.65,
       stagger: 0.025,
@@ -152,10 +204,10 @@ function setupMotion() {
     document.querySelectorAll(".gallery-media").forEach((image) => {
       gsap.fromTo(
         image.querySelector("img"),
-        { yPercent: -7, scale: 1.16 },
+        { yPercent: -4, scale: 1.09 },
         {
-          yPercent: 7,
-          scale: 1.16,
+          yPercent: 4,
+          scale: 1.09,
           ease: "none",
           scrollTrigger: {
             trigger: image,
@@ -166,6 +218,20 @@ function setupMotion() {
         },
       );
     });
+    gsap.fromTo(
+      ".footer-watermark",
+      { xPercent: 2 },
+      {
+        xPercent: -5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".site-footer",
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: true,
+        },
+      },
+    );
   });
 
   media = gsap.matchMedia();
@@ -176,6 +242,7 @@ function setupMotion() {
       x: () => -distance(),
       ease: "none",
       scrollTrigger: {
+        id: "service-flow",
         trigger: ".services-stage",
         start: "top top",
         end: () => `+=${distance() * 1.05}`,
@@ -184,9 +251,20 @@ function setupMotion() {
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate(self) {
-          serviceCurrent.textContent = String(
-            Math.min(4, 1 + Math.floor(self.progress * 4)),
-          ).padStart(2, "0");
+          const cardWidth = serviceCards[0].offsetWidth;
+          const viewportCenter =
+            self.progress * distance() + window.innerWidth * 0.455;
+          setService(
+            Math.max(
+              0,
+              Math.min(
+                3,
+                Math.floor(
+                  viewportCenter / (cardWidth + window.innerWidth * 0.02),
+                ),
+              ),
+            ),
+          );
           serviceProgress.style.transform = `scaleX(${self.progress})`;
         },
       },
@@ -207,6 +285,77 @@ function setupMotion() {
   ScrollTrigger.refresh();
 }
 
+let readingSnapshot;
+let readingRestoreFrame;
+function restoreReadingPosition() {
+  if (!readingSnapshot) return;
+  const flow = ScrollTrigger.getById("service-flow");
+  // Enabling motion creates a pin spacer on GSAP's next update. Measure its
+  // actual height instead of restoring against the temporary unpinned layout.
+  if (flow) {
+    const expectedHeight =
+      document.querySelector(".services-stage").offsetHeight +
+      Math.max(0, flow.end - flow.start);
+    if (services.offsetHeight + 2 < expectedHeight) {
+      readingRestoreFrame = requestAnimationFrame(restoreReadingPosition);
+      return;
+    }
+  }
+  const { chapter, previousTop, serviceIndex } = readingSnapshot;
+  lenis?.resize();
+  let destination =
+    window.scrollY + chapter.getBoundingClientRect().top - previousTop;
+  if (chapter === services) {
+    if (flow) {
+      const distance = track.scrollWidth - window.innerWidth;
+      const progress = Math.min(
+        1,
+        (serviceIndex *
+          (serviceCards[0].offsetWidth + window.innerWidth * 0.02)) /
+          distance,
+      );
+      destination = flow.start + progress * (flow.end - flow.start);
+    } else
+      destination =
+        serviceCards[serviceIndex].getBoundingClientRect().top +
+        window.scrollY -
+        132;
+    setService(serviceIndex);
+  }
+  if (lenis) lenis.scrollTo(destination, { immediate: true });
+  else window.scrollTo(0, destination);
+  readingSnapshot = undefined;
+  updateProgress();
+}
+
+function rebuildMotionAtReadingPosition() {
+  if (!readingSnapshot) {
+    const chapter =
+      [...document.querySelectorAll("main > section[id]")]
+        .filter(
+          (section) =>
+            section.getBoundingClientRect().top <= window.innerHeight * 0.33,
+        )
+        .at(-1) || document.querySelector(".hero");
+    const previousTop = chapter.getBoundingClientRect().top;
+    let serviceIndex = Number(serviceCurrent.textContent) - 1;
+    if (
+      chapter === services &&
+      !services.classList.contains("scroll-services")
+    ) {
+      const visible = serviceCards.findIndex((card) => {
+        const box = card.getBoundingClientRect();
+        return box.top < window.innerHeight * 0.65 && box.bottom > 132;
+      });
+      if (visible >= 0) serviceIndex = visible;
+    }
+    readingSnapshot = { chapter, previousTop, serviceIndex };
+  }
+  cancelAnimationFrame(readingRestoreFrame);
+  setupMotion();
+  readingRestoreFrame = requestAnimationFrame(restoreReadingPosition);
+}
+
 motionButton.addEventListener("click", () => {
   paused = !paused;
   storedPause = paused;
@@ -215,19 +364,56 @@ motionButton.addEventListener("click", () => {
   } catch {
     /* Storage is optional. */
   }
-  setupMotion();
+  rebuildMotionAtReadingPosition();
+});
+
+serviceButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    const flow = ScrollTrigger.getById("service-flow");
+    if (flow) {
+      const gap = window.innerWidth * 0.02;
+      const distance = track.scrollWidth - window.innerWidth;
+      const progress = Math.min(
+        1,
+        (index * (serviceCards[0].offsetWidth + gap)) / distance,
+      );
+      const position = flow.start + progress * (flow.end - flow.start);
+      if (lenis) lenis.scrollTo(position, { duration: 1 });
+      else window.scrollTo(0, position);
+    } else {
+      const position =
+        serviceCards[index].getBoundingClientRect().top + window.scrollY - 132;
+      if (lenis) lenis.scrollTo(position, { duration: 0.8 });
+      else window.scrollTo(0, position);
+      setService(index);
+    }
+  });
 });
 reduceMotion.addEventListener("change", (event) => {
   paused = event.matches || storedPause;
-  setupMotion();
+  rebuildMotionAtReadingPosition();
 });
 
 // Native scrolling remains available with JavaScript or motion disabled.
 const headerProgress = document.querySelector(".header-progress");
+const chapters = [...document.querySelectorAll("main > section[id]")];
+const chapterLinks = [...document.querySelectorAll("[data-section]")];
 let scrollFrame = false;
 function updateProgress() {
   const max = document.documentElement.scrollHeight - window.innerHeight;
   headerProgress.style.transform = `scaleX(${max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0})`;
+  const current =
+    chapters
+      .filter(
+        (section) =>
+          section.getBoundingClientRect().top <= window.innerHeight * 0.33,
+      )
+      .at(-1)?.id || "inicio";
+  chapterLinks.forEach((link) => {
+    if (link.dataset.section === current)
+      link.setAttribute("aria-current", "location");
+    else link.removeAttribute("aria-current");
+  });
   scrollFrame = false;
 }
 window.addEventListener(
@@ -241,20 +427,6 @@ window.addEventListener(
   { passive: true },
 );
 window.addEventListener("resize", updateProgress);
-
-const navObserver = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      const link = document.querySelector(
-        `.nav-link[href="#${entry.target.id}"]`,
-      );
-      link?.classList.toggle("is-active", entry.isIntersecting);
-    }
-  },
-  { rootMargin: "-15% 0px -35% 0px" },
-);
-navObserver.observe(services);
-navObserver.observe(document.querySelector(".operations"));
 
 if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
   document.querySelectorAll(".magnetic").forEach((button) => {
@@ -284,6 +456,18 @@ document.querySelectorAll(".brand-source").forEach((image) => {
     );
   image.addEventListener("load", showBrand);
   if (image.complete) showBrand();
+});
+document.querySelectorAll(".editorial-media img").forEach((image) => {
+  const updateImage = () => {
+    image.hidden = image.naturalWidth === 0;
+    image.parentElement.classList.toggle(
+      "media-failed",
+      image.naturalWidth === 0,
+    );
+  };
+  image.addEventListener("error", updateImage);
+  image.addEventListener("load", updateImage);
+  if (image.complete) updateImage();
 });
 document.querySelectorAll(".gallery-media img").forEach((image) => {
   const markAsset = () => {
@@ -367,6 +551,7 @@ document.querySelector(".wa-form").addEventListener("submit", (event) => {
 });
 
 setupMotion();
+initGallery({ getLenis: () => lenis });
 updateProgress();
 document.fonts.ready.then(() => ScrollTrigger.refresh());
 window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });

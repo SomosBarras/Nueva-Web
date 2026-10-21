@@ -113,7 +113,7 @@ html = html.replace(
   "</head>",
   `<script type="application/json" id="font-licenses">${JSON.stringify(licenseText).replaceAll("<", "\\u003c")}</script>\n</head>`,
 );
-html = html.replace(/^[\t ]+$/gm, '');
+html = html.replace(/^[\t ]+$/gm, "");
 await writeFile(file, html);
 await writeFile(
   path.join(output, "SomosBarras.zip"),

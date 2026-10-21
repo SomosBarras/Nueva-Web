@@ -10,6 +10,8 @@ El archivo incluye las fotografías, el logotipo, las fuentes y todas las animac
 
 Rediseño de una sola página con Vite, JavaScript sin framework, GSAP y Lenis. El contenido del HTML original y la paleta de marca se conservan: rosa `#ff3890`, blanco `#ffffff` y negro `#000000`.
 
+La portada muestra desde el principio la operativa real de barras para conciertos y festivales. El recorrido presenta primero la propuesta y los servicios, después las fotografías del trabajo, los 25 clientes y el contacto. La foto de portada se abre con el scroll; la experiencia funciona completa sin depender del futuro vídeo.
+
 ## Desarrollo
 
 Requiere Node.js **20.19+ de la rama 20, o 22.12+**; se recomienda **Node.js 24**.
@@ -39,13 +41,16 @@ Puede indicarse otro ejecutable mediante `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`.
 ## Estructura y experiencia
 
 - `index.html`: nueva página; `src/style.css` y `src/main.js`: estilos e interacción.
+- `src/gallery.js` y `src/gallery.css`: ampliación accesible de las fotografías.
 - `index-2.html`: HTML original intacto, conservado como referencia.
 - `public/assets/`: diagramas SVG originales del rediseño.
 - `entrega/SomosBarras.html`: web autónoma para abrir con doble clic, sin instalar nada.
 - `entrega/SomosBarras.zip`: la misma web como index.html, instrucciones y licencias de fuentes.
 - `tests/`: comprobaciones de contenido, navegación, movimiento y chat en escritorio, móvil y movimiento reducido.
 
-En escritorio, los servicios avanzan horizontalmente al hacer scroll vertical. En móvil, el recorrido es vertical y natural. La página respeta `prefers-reduced-motion` e incluye un control para pausar animaciones. El chat de WhatsApp dispone de etiquetas accesibles, control de foco, navegación por teclado y cierre con Escape.
+En escritorio, los servicios avanzan horizontalmente al hacer scroll vertical y también se pueden seleccionar con sus accesos directos. En móvil, el recorrido es vertical y la navegación por secciones permanece disponible. La galería permite ver las fotografías completas con botones y teclado, cierre con Escape y retorno del foco.
+
+La página respeta `prefers-reduced-motion`; pausar o reanudar las animaciones conserva la sección que se está leyendo. El chat de WhatsApp dispone de etiquetas accesibles, control de foco, navegación por teclado y cierre con Escape. Los diálogos de galería y WhatsApp no se superponen.
 
 Los enlaces de empleo y de información legal apuntan al dominio original `somosbarras.com`.
 
