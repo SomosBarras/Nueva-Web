@@ -1,0 +1,12 @@
+SOMOS BARRAS — WEB LISTA PARA ABRIR
+
+1. Descarga SomosBarras.html, o extrae el ZIP.
+2. Abre SomosBarras.html (o index.html en el ZIP) con doble clic.
+
+No necesitas instalar Node, Vite, paquetes ni abrir una terminal.
+El diseño, las fuentes, los SVG, las animaciones, las seis fotografías y el logotipo originales están dentro del HTML.
+Las fotografías están optimizadas para pantalla, sin cambiar su contenido.
+La visualización funciona sin conexión a Internet.
+Los enlaces a WhatsApp, correo, empleo y páginas legales requieren sus servicios correspondientes.
+
+Para subirla a un alojamiento estático, puedes renombrar SomosBarras.html a index.html.

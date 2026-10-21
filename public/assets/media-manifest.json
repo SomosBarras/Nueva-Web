@@ -1,0 +1,107 @@
+[
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3556.jpg",
+    "original_sha256": "cd57b72386f75a67f4cb8abf03a7fad87f4e1d922feea4a95f5a11ec97682d19",
+    "original_dimensions": [
+      6192,
+      4128
+    ],
+    "local_path": "/assets/photos/ENF3556.webp",
+    "display_dimensions": [
+      2048,
+      1365
+    ],
+    "sha256": "82129e3c7106ba5698e72af1bb53cfa1bed8328805aa664547fc0b102ccf6df5",
+    "bytes": 345192
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3413.jpg",
+    "original_sha256": "10b5a12ad7d1fbdbee98241ad3724298ac48394d3641a9f90a45980dc4b8c22e",
+    "original_dimensions": [
+      6192,
+      4128
+    ],
+    "local_path": "/assets/photos/ENF3413.webp",
+    "display_dimensions": [
+      2048,
+      1365
+    ],
+    "sha256": "5793969aa793da7f9b93ecf7cdbb902c93b975b7f3c685832d68cbab283023e3",
+    "bytes": 304116
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3366.jpg",
+    "original_sha256": "4fccc3c4eb7a1eac6b33c371a8e42ad9785546e4d1cd8f3a23fa9e3da9dff5c8",
+    "original_dimensions": [
+      4128,
+      6192
+    ],
+    "local_path": "/assets/photos/ENF3366.webp",
+    "display_dimensions": [
+      1365,
+      2048
+    ],
+    "sha256": "a89f7f41b634f03661454f88ad94c62d0a6471dfbd5186cda7b82a4953843b00",
+    "bytes": 240792
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3350.jpg",
+    "original_sha256": "473a2d1a2b9e6f3abda56699e45437d997b78b5b7083cd7def624d7433679d60",
+    "original_dimensions": [
+      4018,
+      6027
+    ],
+    "local_path": "/assets/photos/ENF3350.webp",
+    "display_dimensions": [
+      1365,
+      2048
+    ],
+    "sha256": "ef2702bca8526959b5b937926b46c46d33aa08777dbf9057b1461fb33576b4cf",
+    "bytes": 322118
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3349.jpg",
+    "original_sha256": "826d95a154716d09e0aa62e8ade4ebe14b0bb3ce344f499f4537cae5d5900852",
+    "original_dimensions": [
+      4128,
+      6192
+    ],
+    "local_path": "/assets/photos/ENF3349.webp",
+    "display_dimensions": [
+      1365,
+      2048
+    ],
+    "sha256": "442220e98465924f5b95b1004519d32b4f6697b8e136c2ec311403798ad952ae",
+    "bytes": 410716
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/ENF3317.jpg",
+    "original_sha256": "13333136aac71ec4121161bbde0eb2b574b93ec832a6a41537e4f179cce85751",
+    "original_dimensions": [
+      5991,
+      3994
+    ],
+    "local_path": "/assets/photos/ENF3317.webp",
+    "display_dimensions": [
+      2048,
+      1365
+    ],
+    "sha256": "577fcd40f5a0bd47c6e40472c354d697192af9b8fe0ab0a48173a8f4b94958cd",
+    "bytes": 606752
+  },
+  {
+    "original_url": "https://somosbarras.com/wp-content/uploads/2026/08/Recurso-91.png",
+    "original_sha256": "40dcab843d587ccbe88922a6634fabb0d56af92af405227cfb33d0f806f7d8c4",
+    "original_dimensions": [
+      2391,
+      261
+    ],
+    "local_path": "/assets/logo-original.png",
+    "display_dimensions": [
+      2391,
+      261
+    ],
+    "sha256": "40dcab843d587ccbe88922a6634fabb0d56af92af405227cfb33d0f806f7d8c4",
+    "bytes": 23307
+  }
+]
